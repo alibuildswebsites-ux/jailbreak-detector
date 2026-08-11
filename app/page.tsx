@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 const API_BASE =
@@ -229,6 +230,9 @@ export default function Home() {
         </div>
 
         <div className={styles.sidebarFooter}>
+          <Link href="/analytics" className={styles.analyticsLink}>
+            <span className={styles.analyticsIcon}>▤</span> Graphs &amp; analytics
+          </Link>
           <div className={styles.modelCard}>
             <div className={styles.modelName}>TF-IDF + Logistic Regression</div>
             <div className={styles.modelMeta}>97.7% accuracy · recall-first</div>
