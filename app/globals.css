@@ -1,0 +1,44 @@
+/* ============ CORVIX THEME (from github.com/alibuildswebsites-ux/corvix) ============ */
+:root {
+  --corvix-bg: #000000;
+  --corvix-surface: #0a0a0a;
+  --corvix-accent: #ffffff;
+  --corvix-accent-hover: #e0e0e0;
+  --corvix-text: #F7F8F8;
+  --corvix-muted: #B4BCD0;
+  --corvix-border: rgba(255, 255, 255, 0.08);
+  --font-display: "Outfit", sans-serif;
+  --font-body: "Rubik", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--corvix-bg);
+  color: var(--corvix-text);
+  font-family: var(--font-body);
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+/* custom scrollbar — corvix dark */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
