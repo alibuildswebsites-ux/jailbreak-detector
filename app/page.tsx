@@ -4,7 +4,10 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 
-const API_BASE =
+const API_BASE = ""; // same-origin — Vercel proxies /api/* to the backend through nginx
+
+// backend reachable for direct testing (server-side / local dev)
+const DIRECT_BACKEND =
   process.env.NEXT_PUBLIC_API_URL || "https://srv1869613.hstgr.cloud:8443";
 
 type Message = {
@@ -142,9 +145,11 @@ export default function Home() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: text }),
+        signal: AbortSignal.timeout(15000),
       });
       if (!res.ok) throw new Error(`API ${res.status}`);
       const data = await res.json();
+      if (data.error) throw new Error(data.error);
 
       const asstMsg: Message = {
         id: nextId(),
@@ -166,7 +171,7 @@ export default function Home() {
       const errMsg: Message = {
         id: nextId(),
         role: "system",
-        text: `⚠️ Could not reach the detector API (${API_BASE}). Is the backend running?`,
+        text: `⚠️ The detector could not be reached (${err instanceof Error ? err.message : "network error"}). If this persists, the server may be offline — try again in a moment.`,
         error: true,
       };
       updateChat(chatId, (c) => ({
