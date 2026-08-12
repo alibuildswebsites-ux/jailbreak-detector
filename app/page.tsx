@@ -53,9 +53,6 @@ function VerdictBadge({ m }: { m: Message }) {
   return (
     <div className={jb ? styles.badgeDanger : styles.badgeSafe}>
       <span className={styles.badgeLabel}>{verdictText(m)}</span>
-      <span className={styles.badgeConf}>
-        {(m.verdict.confidence * 100).toFixed(1)}% confidence
-      </span>
     </div>
   );
 }
@@ -268,10 +265,10 @@ export default function Home() {
               <div className={styles.heroMark}>◆</div>
               <h2 className={styles.heroTitle}>Is this prompt a jailbreak?</h2>
               <p className={styles.heroSub}>
-                Paste any prompt below — the model scores it as{" "}
-                <strong>benign</strong> or <strong>jailbreak</strong> with
-                confidence, using a trained TF-IDF + Logistic Regression
-                detector (trained on 1,306 real prompts).
+                Paste any prompt below — the model classifies it as{" "}
+                <strong>benign</strong> or <strong>jailbreak</strong>, using a
+                trained TF-IDF + Logistic Regression detector (trained on
+                1,306 real prompts).
               </p>
               <div className={styles.suggestions}>
                 {SUGGESTIONS.map((s) => (
@@ -296,24 +293,6 @@ export default function Home() {
                     <p className={styles.messageText}>{m.text}</p>
                     {m.role === "assistant" && m.verdict ? (
                       <VerdictBadge m={m} />
-                    ) : null}
-                    {m.role === "assistant" && m.verdict ? (
-                      <div className={styles.probBar}>
-                        <div className={styles.probBarLabel}>
-                          <span>benign {(m.verdict.probabilities.benign * 100).toFixed(0)}%</span>
-                          <span>jailbreak {(m.verdict.probabilities.jailbreak * 100).toFixed(0)}%</span>
-                        </div>
-                        <div className={styles.probTrack}>
-                          <div
-                            className={styles.probFillSafe}
-                            style={{ width: `${m.verdict.probabilities.benign * 100}%` }}
-                          />
-                          <div
-                            className={styles.probFillDanger}
-                            style={{ width: `${m.verdict.probabilities.jailbreak * 100}%` }}
-                          />
-                        </div>
-                      </div>
                     ) : null}
                   </div>
                 </div>
