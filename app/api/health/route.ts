@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const BACKEND_BASE =
-  process.env.BACKEND_URL || "https://srv1869613.hstgr.cloud:8443";
+  process.env.BACKEND_URL || "https://srv1869613.hstgr.cloud";
 
 export async function GET(req: NextRequest) {
   try {

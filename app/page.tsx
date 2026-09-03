@@ -8,7 +8,7 @@ const API_BASE = ""; // same-origin — Vercel proxies /api/* to the backend thr
 
 // backend reachable for direct testing (server-side / local dev)
 const DIRECT_BACKEND =
-  process.env.NEXT_PUBLIC_API_URL || "https://srv1869613.hstgr.cloud:8443";
+  process.env.NEXT_PUBLIC_API_URL || "https://srv1869613.hstgr.cloud";
 
 type Message = {
   id: number;

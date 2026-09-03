@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 // Backend is only reachable through the nginx reverse proxy on the VPS.
 // Vercel serverless functions CAN reach it (server-to-server, no browser CORS/port limits).
 const BACKEND_BASE =
-  process.env.BACKEND_URL || "https://srv1869613.hstgr.cloud:8443";
+  process.env.BACKEND_URL || "https://srv1869613.hstgr.cloud";
 
 export async function POST(req: NextRequest) {
   try {
